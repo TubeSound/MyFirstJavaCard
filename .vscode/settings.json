@@ -1,0 +1,13 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": [
+        "src/main/java",
+        "src/test/java"
+    ],
+    "java.project.outputPath": "build/classes",
+    "java.project.referencedLibraries": [
+        "lib/jcardsim-3.0.6.0.jar"
+    ],
+    "java.debug.settings.forceBuildBeforeLaunch": false,
+    "files.encoding": "utf8"
+}

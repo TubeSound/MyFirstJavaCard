@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Java Card: PINGをステップ実行",
+            "request": "launch",
+            "mainClass": "io.github.tubesound.myfirstjavacard.card.PingAppletTest",
+            "preLaunchTask": "Java Card: Build",
+            "classPaths": [
+                "${workspaceFolder}/build/classes",
+                "${workspaceFolder}/lib/jcardsim-3.0.6.0.jar"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Java Card: 全テストを実行",
+            "request": "launch",
+            "mainClass": "io.github.tubesound.myfirstjavacard.card.TestRunner",
+            "preLaunchTask": "Java Card: Build",
+            "classPaths": [
+                "${workspaceFolder}/build/classes",
+                "${workspaceFolder}/lib/jcardsim-3.0.6.0.jar"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

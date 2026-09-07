@@ -1,0 +1,30 @@
+name: Maven-free jCardSim tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install JDK 25
+        uses: oracle-actions/setup-java@v1
+        with:
+          website: oracle.com
+          release: '25'
+      - name: Verify that Maven files are absent
+        shell: powershell
+        run: |
+          if (Test-Path pom.xml) { throw 'pom.xml must not be added' }
+          if (Test-Path mvnw.cmd) { throw 'Maven Wrapper must not be added' }
+      - name: Compile and test with PowerShell
+        shell: powershell
+        run: .\scripts\test.ps1
