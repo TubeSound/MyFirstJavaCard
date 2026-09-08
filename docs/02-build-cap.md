@@ -35,6 +35,13 @@ Oracle JDKとJava Card Toolsはライセンスと社内承認に従って各PC�
 3. Converterを`-target 3.0.5`で実行
 4. CAPファイルの存在とサイズを確認
 
+1つのCAPには次の2つのApplet定義が入ります。
+
+| Applet | AID |
+| --- | --- |
+| `PingApplet` | `F0545542450101` |
+| `FileSystemApplet` | `F0545542450201` |
+
 出力先は次です。
 
 ```text

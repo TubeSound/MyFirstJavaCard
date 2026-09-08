@@ -15,6 +15,18 @@
         },
         {
             "type": "java",
+            "name": "Java Card: COD・EFをステップ実行",
+            "request": "launch",
+            "mainClass": "io.github.tubesound.myfirstjavacard.card.FileSystemAppletTest",
+            "preLaunchTask": "Java Card: Build",
+            "classPaths": [
+                "${workspaceFolder}/build/classes",
+                "${workspaceFolder}/lib/jcardsim-3.0.6.0.jar"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
             "name": "Java Card: 全テストを実行",
             "request": "launch",
             "mainClass": "io.github.tubesound.myfirstjavacard.card.TestRunner",

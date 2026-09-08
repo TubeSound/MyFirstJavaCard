@@ -2,7 +2,7 @@
 
 Windows 11、VS Code、jCardSimでJava Card Appletを学ぶための、**Mavenを使わない**最小プロジェクトです。
 
-最初のAppletは、APDU `00 10 00 00 04` に対してASCIIの `PING` とステータスワード `9000` を返します。
+最初のAppletは、APDU `00 10 00 00 04` に対してASCIIの `PING` とステータスワード `9000` を返します。次の教材として、COD（transientメモリ）、IEF、WEF、鍵オブジェクトのライフサイクルを追加しています。
 
 ## この構成で必要なもの
 
@@ -36,7 +36,7 @@ Maven、Gradle、JUnitは使いません。ビルド中にインターネット�
 ```text
 [PASS] PING returns PING + 9000
 ...
-All 7 tests passed.
+All 14 tests passed.
 ```
 
 ## 2. VS Codeでステップ実行
@@ -48,16 +48,29 @@ All 7 tests passed.
 
 これはjCardSim上で通常のJavaクラスとして実行されるAppletのデバッグです。実カードやCAPファイル内部を直接デバッグするものではありません。
 
-## 3. よく使う操作
+COD・EF教材では、**Java Card: COD・EFをステップ実行**を選びます。`FileSystemApplet.process()`、`CodMemory.selectFile()`、`WefFile.update()`、`KeyObject.check()`にブレークポイントを置くと、APDUから各オブジェクトへの処理委譲を確認できます。
+
+## 3. COD・IEF・WEF教材
+
+[COD・IEF・WEF・鍵オブジェクト](docs/04-cod-ief-wef.md)では、次を実際のAPDUで確認します。
+
+- `CLEAR_ON_DESELECT`：Applet選択解除で選択FIDが消える
+- `CLEAR_ON_RESET`：選択解除では残り、カードリセットで消える
+- WEF：選択解除・リセット後も更新内容が残る
+- IEF＋鍵：PINを外部読出しせず、VERIFY操作だけを公開する
+- PIN照合状態：Applet選択解除で無効になる
+
+## 4. よく使う操作
 
 | 操作 | PowerShell | VS Code |
 | --- | --- | --- |
 | コンパイル | `.\scripts\build.ps1` | `Terminal: Run Task` → **Java Card: Build** |
 | 全テスト | `.\scripts\test.ps1` | `Terminal: Run Test Task` |
-| デバッグ | ― | F5 → **Java Card: PINGをステップ実行** |
+| PINGデバッグ | ― | F5 → **Java Card: PINGをステップ実行** |
+| COD・EFデバッグ | ― | F5 → **Java Card: COD・EFをステップ実行** |
 | CAP生成 | `.\scripts\build-cap.ps1` | Ctrl+Shift+B |
 
-## 4. ソース構成
+## 5. ソース構成
 
 ```text
 src/main/java/    カードへ載せるAppletコード
@@ -72,8 +85,9 @@ docs/             導入と学習資料
 
 1. [Windows 11セットアップ](docs/00-windows-setup.md)
 2. [最初のAppletとAPDU](docs/01-first-applet.md)
-3. [CAP生成](docs/02-build-cap.md)
-4. [社内環境への持ち込みと依存管理](docs/03-offline-security.md)
+3. [COD・IEF・WEF・鍵オブジェクト](docs/04-cod-ief-wef.md)
+4. [CAP生成](docs/02-build-cap.md)
+5. [社内環境への持ち込みと依存管理](docs/03-offline-security.md)
 
 ## 識別子
 
@@ -83,6 +97,8 @@ docs/             導入と学習資料
 | パッケージAID | `F05455424501` |
 | Applet | `PingApplet` |
 | Applet AID | `F0545542450101` |
+| ファイル教材Applet | `FileSystemApplet` |
+| ファイル教材Applet AID | `F0545542450201` |
 | 対象 | Java Card Classic 3.0.5 |
 
 ## ライセンス
